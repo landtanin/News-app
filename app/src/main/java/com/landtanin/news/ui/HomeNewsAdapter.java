@@ -1,4 +1,4 @@
-package com.landtanin.news;
+package com.landtanin.news.ui;
 
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -9,8 +9,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.firebase.analytics.FirebaseAnalytics;
-import com.landtanin.news.model.Article;
+import com.landtanin.news.R;
+import com.landtanin.news.model.DTO.Article;
 import com.landtanin.news.utils.DateUtils;
 
 import java.util.List;
@@ -37,9 +39,12 @@ public class HomeNewsAdapter extends RecyclerView.Adapter<HomeNewsAdapter.HomeNe
     @Override
     public void onBindViewHolder(HomeNewsViewHolder holder, final int position) {
 
+
         Article newsArticle = newsArticles.get(position);
-        Glide.with(holder.cardImageView.getContext()).load(newsArticle.getUrlToImage())
-                .centerCrop()
+        RequestOptions myOptions = new RequestOptions().centerCrop();
+        Glide.with(holder.cardImageView.getContext())
+                .load(newsArticle.getUrlToImage())
+                .apply(myOptions)
                 .into(holder.cardImageView);
         holder.cardTitleTextView.setText(newsArticle.getTitle());
         holder.cardTimeTextView.setText(DateUtils.formatNewsApiDate(newsArticle.getPublishedAt()));

@@ -1,5 +1,5 @@
 
-package com.landtanin.news.model;
+package com.landtanin.news.model.DTO;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

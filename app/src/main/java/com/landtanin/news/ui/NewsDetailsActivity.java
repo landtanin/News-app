@@ -1,4 +1,4 @@
-package com.landtanin.news;
+package com.landtanin.news.ui;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +13,9 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import com.landtanin.news.R;
+import com.landtanin.news.model.DTO.NewsStore;
 
 public class NewsDetailsActivity extends AppCompatActivity {
 

@@ -1,6 +1,4 @@
-package com.landtanin.news;
-
-import com.landtanin.news.model.Article;
+package com.landtanin.news.model.DTO;
 
 import java.util.ArrayList;
 import java.util.List;

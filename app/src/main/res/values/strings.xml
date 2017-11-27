@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">News</string>
+    <string-array name="news">
+
+        <item>the-verge</item>
+        <item>bbc-news</item>
+        <item>abc-news</item>
+        <item>buzzfeed</item>
+        <item>cnn</item>
+        <item>the-new-york-times</item>
+        <item>reuters</item>
+
+    </string-array>
+
 </resources>

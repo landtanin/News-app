@@ -1,6 +1,6 @@
 package com.landtanin.news.networking;
 
-import com.landtanin.news.model.GetArticleResponse;
+import com.landtanin.news.model.DTO.GetArticleResponse;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -14,8 +14,9 @@ import retrofit2.http.Query;
 
 public class NewsAPI {
 
-    private static final String APIKEY = "381f45477469490fa3dcf1c8fbbc958f";
-    private static final String APIPATH = "https://newsapi.org/v1/";
+//    private static final String APIKEY = "381f45477469490fa3dcf1c8fbbc958f";
+    private static final String APIKEY = "6bbacaed780040d18a3417ba90a7cf54";
+    private static final String APIPATH = "https://newsapi.org/v2/";
 
 
     // make it a Singleton
@@ -37,9 +38,9 @@ public class NewsAPI {
 
     public interface NewsService {
 
-        @GET("articles?apiKey=" + APIKEY)
-        Call<GetArticleResponse> getArticles(@Query("source") String source,@Query("sortBy") String sortBy);
-
+        @GET("top-headlines?apiKey=" + APIKEY)
+//        Call<GetArticleResponse> getArticles(@Query("source") String source,@Query("sortBy") String sortBy);
+        Call<GetArticleResponse> getArticles(@Query("sources") String source);
 
     }
 

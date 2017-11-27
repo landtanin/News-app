@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.landtanin.news.NewsDetailsActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <WebView
-        android:id="@+id/activity_news_details_webview"
+    <RelativeLayout
+
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></WebView>
+        android:layout_height="match_parent"
+        tools:context="com.landtanin.news.ui.NewsDetailsActivity">
 
-    <ProgressBar
-        android:id="@+id/activity_news_details_progressbar"
-        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:indeterminate="true"
-        />
+        <WebView
+            android:id="@+id/activity_news_details_webview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></WebView>
 
-</RelativeLayout>
+        <ProgressBar
+            android:id="@+id/activity_news_details_progressbar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:indeterminate="true" />
+
+    </RelativeLayout>
+
+</layout>
