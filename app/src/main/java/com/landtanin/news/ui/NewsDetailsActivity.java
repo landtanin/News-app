@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebResourceError;
@@ -15,13 +16,27 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.landtanin.news.R;
+import com.landtanin.news.model.DTO.Article;
+import com.landtanin.news.model.DTO.FifthNewsStore;
+import com.landtanin.news.model.DTO.FirstNewsStore;
+import com.landtanin.news.model.DTO.FourthNewsStore;
 import com.landtanin.news.model.DTO.NewsStore;
+import com.landtanin.news.model.DTO.SecondNewsStore;
+import com.landtanin.news.model.DTO.SeventhNewsStore;
+import com.landtanin.news.model.DTO.SixthNewsStore;
+import com.landtanin.news.model.DTO.ThirdNewsStore;
+import com.landtanin.news.utils.Constants;
+
+import java.util.List;
 
 public class NewsDetailsActivity extends AppCompatActivity {
 
     private static final String KEY_INDEX = "news_index";
+    private static final String KEY_ID = "key_id";
     private WebView webView;
     private ProgressBar progressBar;
+    private String newsSource;
+    private static final String TAG = "NewsDetailsActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +50,7 @@ public class NewsDetailsActivity extends AppCompatActivity {
         progressBar = (ProgressBar) findViewById(R.id.activity_news_details_progressbar);
 
         int index = getIntent().getIntExtra(KEY_INDEX, -1);
+        newsSource = getIntent().getStringExtra(KEY_ID);
 
         if (index != -1) {
             updateNewsDetails(index);
@@ -70,16 +86,40 @@ public class NewsDetailsActivity extends AppCompatActivity {
             }
         });
 
-        webView.loadUrl(NewsStore.getNewsArticles().get(index).getUrl());
-        getSupportActionBar().setTitle(NewsStore.getNewsArticles().get(index).getTitle());
+        webView.loadUrl(whichNewsStore().get(index).getUrl());
+        getSupportActionBar().setTitle(whichNewsStore().get(index).getTitle());
     }
 
     // make it static to allow it to be call from anywhere
-    public static void launch(Context context, int index) {
+    public static void launch(Context context, int index, String providerId) {
 
+        Log.e(TAG, "launch: " + index);
         Intent intent = new Intent(context, NewsDetailsActivity.class);
         intent.putExtra(KEY_INDEX, index);
+        intent.putExtra(KEY_ID, providerId);
         context.startActivity(intent);
+
+    }
+
+    private List<Article> whichNewsStore() {
+        switch (newsSource) {
+            case Constants.THE_VERGE:
+                return FirstNewsStore.getNewsArticles();
+            case Constants.BBC:
+                return SecondNewsStore.getNewsArticles();
+            case Constants.ABC_NEWS:
+                return ThirdNewsStore.getNewsArticles();
+            case Constants.BUZZ_FEED:
+                return FourthNewsStore.getNewsArticles();
+            case Constants.CNN:
+                return FifthNewsStore.getNewsArticles();
+            case Constants.THE_NEW_YORK_TIMES:
+                return SixthNewsStore.getNewsArticles();
+            case Constants.REUTERS:
+                return SeventhNewsStore.getNewsArticles();
+            default:
+                return NewsStore.getNewsArticles();
+        }
 
     }
 

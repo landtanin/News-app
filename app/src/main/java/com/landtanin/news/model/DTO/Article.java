@@ -6,6 +6,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class Article {
 
+    @SerializedName("source")
+    @Expose
+    private Source source;
     @SerializedName("author")
     @Expose
     private String author;
@@ -24,6 +27,14 @@ public class Article {
     @SerializedName("publishedAt")
     @Expose
     private String publishedAt;
+
+    public Source getSource() {
+        return source;
+    }
+
+    public void setSource(Source source) {
+        this.source = source;
+    }
 
     public String getAuthor() {
         return author;

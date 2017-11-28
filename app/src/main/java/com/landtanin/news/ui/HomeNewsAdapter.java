@@ -2,6 +2,7 @@ package com.landtanin.news.ui;
 
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,7 @@ public class HomeNewsAdapter extends RecyclerView.Adapter<HomeNewsAdapter.HomeNe
 
     private List<Article> newsArticles;
     private FirebaseAnalytics mFirebaseAnalytics;
+    private static final String TAG = "HomeNewsAdapter";
 
     public HomeNewsAdapter(List<Article> newsArticles) {
         this.newsArticles = newsArticles;
@@ -40,7 +42,7 @@ public class HomeNewsAdapter extends RecyclerView.Adapter<HomeNewsAdapter.HomeNe
     public void onBindViewHolder(HomeNewsViewHolder holder, final int position) {
 
 
-        Article newsArticle = newsArticles.get(position);
+        final Article newsArticle = newsArticles.get(position);
         RequestOptions myOptions = new RequestOptions().centerCrop();
         Glide.with(holder.cardImageView.getContext())
                 .load(newsArticle.getUrlToImage())
@@ -50,6 +52,8 @@ public class HomeNewsAdapter extends RecyclerView.Adapter<HomeNewsAdapter.HomeNe
         holder.cardTimeTextView.setText(DateUtils.formatNewsApiDate(newsArticle.getPublishedAt()));
         holder.cardContentTextView.setText(newsArticle.getDescription());
 
+        Log.w(TAG, "onBindViewHolder: article name " + newsArticle.getTitle());
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,7 +62,8 @@ public class HomeNewsAdapter extends RecyclerView.Adapter<HomeNewsAdapter.HomeNe
                 Bundle bundle = new Bundle();
                 bundle.putString("index", String.valueOf(position));
                 mFirebaseAnalytics.logEvent("cardClicked", bundle);
-                NewsDetailsActivity.launch(view.getContext(), position);
+
+                NewsDetailsActivity.launch(view.getContext(), position, newsArticle.getSource().getId());
             }
         });
     }

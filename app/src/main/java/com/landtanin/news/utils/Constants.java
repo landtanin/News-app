@@ -11,7 +11,7 @@ public class Constants {
     public static final String ABC_NEWS = "abc-news";
     public static final String BUZZ_FEED = "buzzfeed";
     public static final String CNN = "cnn";
-    public static final String FOX_NEWS = "fox-news";
-    public static final String NBC_NEWS = "nbc_news";
+    public static final String THE_NEW_YORK_TIMES = "the-new-york-times";
+    public static final String REUTERS = "reuters";
 
 }

@@ -15,10 +15,18 @@ import android.view.ViewGroup;
 
 import com.landtanin.news.R;
 import com.landtanin.news.databinding.FragmentNewsBinding;
+import com.landtanin.news.model.DTO.FifthNewsStore;
+import com.landtanin.news.model.DTO.FirstNewsStore;
+import com.landtanin.news.model.DTO.FourthNewsStore;
 import com.landtanin.news.model.DTO.GetArticleResponse;
 import com.landtanin.news.model.DTO.NewsStore;
+import com.landtanin.news.model.DTO.SecondNewsStore;
+import com.landtanin.news.model.DTO.SeventhNewsStore;
+import com.landtanin.news.model.DTO.SixthNewsStore;
+import com.landtanin.news.model.DTO.ThirdNewsStore;
 import com.landtanin.news.networking.NewsAPI;
 import com.landtanin.news.ui.HomeNewsAdapter;
+import com.landtanin.news.utils.Constants;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,6 +40,8 @@ public class NewsFragment extends Fragment {
     FragmentNewsBinding b;
     private String newsSource;
     private static final String NEWS_RESOURCE_KEY = "NEWS_RESOURCE_KEY";
+    private static final String TAG = "NewsFragment";
+
 
     public NewsFragment() {
         super();
@@ -89,7 +99,8 @@ public class NewsFragment extends Fragment {
 
                 GetArticleResponse getArticleResponse = response.body();
 
-                NewsStore.setNewsArticles(getArticleResponse.getArticles());
+                whichNewsStore(getArticleResponse);
+//                NewsStore.setNewsArticles(getArticleResponse.getArticles());
 
                 HomeNewsAdapter homeNewsAdapter = new HomeNewsAdapter(getArticleResponse.getArticles());
                 b.newsRecyclerview.setAdapter(homeNewsAdapter);
@@ -103,6 +114,35 @@ public class NewsFragment extends Fragment {
             }
         });
 
+    }
+
+    private void whichNewsStore(GetArticleResponse getArticleResponse) {
+        switch (newsSource) {
+            case Constants.THE_VERGE:
+                FirstNewsStore.setNewsArticles(getArticleResponse.getArticles());
+                return;
+            case Constants.BBC:
+                SecondNewsStore.setNewsArticles(getArticleResponse.getArticles());
+                return;
+            case Constants.ABC_NEWS:
+                ThirdNewsStore.setNewsArticles(getArticleResponse.getArticles());
+                return;
+            case Constants.BUZZ_FEED:
+                FourthNewsStore.setNewsArticles(getArticleResponse.getArticles());
+                return;
+            case Constants.CNN:
+                FifthNewsStore.setNewsArticles(getArticleResponse.getArticles());
+                return;
+            case Constants.THE_NEW_YORK_TIMES:
+                SixthNewsStore.setNewsArticles(getArticleResponse.getArticles());
+                return;
+            case Constants.REUTERS:
+                SeventhNewsStore.setNewsArticles(getArticleResponse.getArticles());
+                return;
+            default:
+                NewsStore.setNewsArticles(getArticleResponse.getArticles());
+                return;
+        }
     }
 
     private void showNewsApiSnack() {
@@ -136,6 +176,7 @@ public class NewsFragment extends Fragment {
     private void restoreArguments(Bundle arguments) {
         // initialise from arguments when no states saved
         newsSource = arguments.getString(NEWS_RESOURCE_KEY);
+        Log.w(TAG, "restoreArguments: " + newsSource);
 
     }
 
