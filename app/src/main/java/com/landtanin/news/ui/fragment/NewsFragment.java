@@ -100,7 +100,6 @@ public class NewsFragment extends Fragment {
                 GetArticleResponse getArticleResponse = response.body();
 
                 whichNewsStore(getArticleResponse);
-//                NewsStore.setNewsArticles(getArticleResponse.getArticles());
 
                 HomeNewsAdapter homeNewsAdapter = new HomeNewsAdapter(getArticleResponse.getArticles());
                 b.newsRecyclerview.setAdapter(homeNewsAdapter);

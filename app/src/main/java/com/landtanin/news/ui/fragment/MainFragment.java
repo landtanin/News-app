@@ -112,14 +112,6 @@ public class MainFragment extends Fragment {
         private SmartFragmentStatePagerAdapter adapterViewPager;
         public String[] tabString = getResources().getStringArray(R.array.news);
 
-//        Fragment firstFrag = NewsFragment.newInstance(tabString[0]);
-//        Fragment secondFrag = NewsFragment.newInstance(tabString[1]);
-//        Fragment thirdFrag = NewsFragment.newInstance(tabString[2]);
-//        Fragment fourthFrag = NewsFragment.newInstance(tabString[3]);
-//        Fragment fifthFrag = NewsFragment.newInstance(tabString[4]);
-//        Fragment sixthFrag = NewsFragment.newInstance(tabString[5]);
-//        Fragment seventhFrag = NewsFragment.newInstance(tabString[6]);
-
         public FragmentMainPagerAdapter(FragmentManager fm) {
             super(fm);
         }
@@ -130,35 +122,35 @@ public class MainFragment extends Fragment {
                 case 0:
                     Log.d(TAG, "getItem: position = " + position + " tabString[0] = " + tabString[0]);
                     return NewsFragment.newInstance(tabString[0]);
-//                    return NewsFragment(position) != null ? getRegisteredFragment(position) : NewsFragment.newInstance(tabString[0]);
+
                 case 1:
                     Log.d(TAG, "getItem: position = " + position + " tabString[1] = " + tabString[1]);
                     return NewsFragment.newInstance(tabString[1]);
-//                    return NewsFragment(position) != null ? getRegisteredFragment(position) : NewsFragment.newInstance(tabString[1]);
+
                 case 2:
                     Log.d(TAG, "getItem: position = " + position + " tabString[2] = " + tabString[2]);
                     return NewsFragment.newInstance(tabString[2]);
-//                    return NewsFragment(position) != null ? getRegisteredFragment(position) : NewsFragment.newInstance(tabString[2]);
+
                 case 3:
                     Log.d(TAG, "getItem: position = " + position + " tabString[3] = " + tabString[3]);
                     return NewsFragment.newInstance(tabString[3]);
-//                    return NewsFragment(position) != null ? getRegisteredFragment(position) : NewsFragment.newInstance(tabString[3]);
+
                 case 4:
                     Log.d(TAG, "getItem: position = " + position + " tabString[4] = " + tabString[4]);
                     return NewsFragment.newInstance(tabString[4]);
-//                    return NewsFragment(position) != null ? getRegisteredFragment(position) : NewsFragment.newInstance(tabString[4]);
+
                 case 5:
                     Log.d(TAG, "getItem: position = " + position + " tabString[5] = " + tabString[5]);
                     return NewsFragment.newInstance(tabString[5]);
-//                    return NewsFragment(position) != null ? getRegisteredFragment(position) : NewsFragment.newInstance(tabString[5]);
+
                 case 6:
                     Log.d(TAG, "getItem: position = " + position + " tabString[6] = " + tabString[6]);
                     return NewsFragment.newInstance(tabString[6]);
-//                    return getRegisteredFragment(position) != null ? getRegisteredFragment(position) : NewsFragment.newInstance(tabString[6]);
+
                 default:
                     Log.d(TAG, "getItem: default position = " + position + " tabString[0] = " + tabString[0]);
                     return NewsFragment.newInstance(tabString[0]);
-//                    return getRegisteredFragment(position) != null ? getRegisteredFragment(position) : NewsFragment.newInstance(tabString[0]);
+
             }
         }
 
